@@ -3,11 +3,13 @@
 Very simple vim configuration (will probably grow over time).
 
 Requirements:
+-------------
 
 * Vim  >= 7.4
 * git
 
 Installation:
+-------------
 
 * Remove (backup before) `~/.vimrc`, `~/.gvimrc` files and `~/.vim` directory
 * `git clone https://github.com/Th30n/vim-config.git ~/.vim`
