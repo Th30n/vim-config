@@ -4,8 +4,13 @@
 
 " Set up Vundle plugin manager
 filetype off
-set runtimepath+=~/.vim/bundle/vundle
-call vundle#begin()
+if has('win32')
+  set runtimepath+=~/vimfiles/bundle/vundle
+  call vundle#begin('~/vimfiles/bundle')
+else
+  set runtimepath+=~/.vim/bundle/vundle
+  call vundle#begin()
+endif
 
 " Plugins
 Plugin 'tpope/vim-fugitive'

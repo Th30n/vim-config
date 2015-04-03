@@ -18,4 +18,5 @@ endif
 set laststatus=1 " display status line when multiple windows present
 set mousehide " Hide the mouse when typing text
 
+syntax on
 colorscheme xoria256
