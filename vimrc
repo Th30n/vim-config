@@ -44,9 +44,6 @@ set number
 " Write file with sudo
 cmap w!! w !sudo tee > /dev/null %
 
-" Pathogen plugin manager
-" execute pathogen#infect()
-
 " Switch syntax highlighting on, when the terminal has colors.
 if &t_Co > 2
   syntax on
