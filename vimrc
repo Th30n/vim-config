@@ -36,13 +36,44 @@ set wildmenu
 set showcmd
 " Highlight matched search patterns.
 set hlsearch
-" Display line numbers.
-set number
+" Incremental search.
+set incsearch
+" Display relative line numbers.
+set relativenumber
+
+" Allow cursor to be positioned where there are no actual characters.
+set virtualedit=all
+
+" Show full tag when autocompleting.
+set showfulltag
+
+" Reread a file that changed on disk.
+set autoread
+
+if has("unix")
+  set shell=zsh
+endif
 
 " Key mappings
 
-" Write file with sudo
+" Write file with sudo.
 cmap w!! w !sudo tee > /dev/null %
+
+" Prepare lcd relative to current file.
+nmap <Leader>cd :lcd %:h/
+" Turn off highlight search.
+nmap <silent> <Leader>n :nohlsearch<CR>
+
+" Emacs style command line editing
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-B> <Left>
+cnoremap <C-F> <Right>
+cnoremap <C-N> <Down>
+cnoremap <C-P> <Up>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
+cnoremap <Esc><BS> <C-W>
 
 " Switch syntax highlighting on, when the terminal has colors.
 if &t_Co > 2
