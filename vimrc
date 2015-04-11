@@ -121,3 +121,20 @@ else
 
 endif " has("autocmd")
 
+if has("gui_running")
+  " GUI options
+  set guioptions=agic
+  set guiheadroom=0 " set the whole screen height for the window
+
+  " GUI font
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ Medium\ 12,DejaVu\ Sans\ Mono\ 12
+    set antialias
+  endif
+
+  set laststatus=1 " display status line when multiple windows present
+  set mousehide " Hide the mouse when typing text
+
+  syntax on
+  colorscheme xoria256
+endif
