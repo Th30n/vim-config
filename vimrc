@@ -42,13 +42,12 @@ set hlsearch
 set incsearch
 " Display relative line numbers.
 set relativenumber
-
+" Allow mouse.
+set mouse=a
 " Allow cursor to be positioned where there are no actual characters.
 set virtualedit=all
-
 " Show full tag when autocompleting.
 set showfulltag
-
 " Reread a file that changed on disk.
 set autoread
 
