@@ -127,9 +127,11 @@ if has("gui_running")
   set guiheadroom=0 " set the whole screen height for the window
 
   " GUI font
+  set antialias
   if has("gui_gtk2")
     set guifont=Inconsolata\ Medium\ 12,DejaVu\ Sans\ Mono\ 12
-    set antialias
+  elseif has("gui_win32")
+    set guifont=Consolas:h10:cEASTEUROPE
   endif
 
   set laststatus=1 " display status line when multiple windows present
