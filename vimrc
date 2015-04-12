@@ -152,3 +152,10 @@ let perc='%3p%%'
 let lineno='%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#'
 let colno=':%3c%V'
 let g:airline_section_z=perc . ' ' . lineno . ' ' . colno
+" Set up unicode symbols.
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = 'λ'
