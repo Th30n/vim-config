@@ -13,8 +13,9 @@ else
 endif
 
 " Plugins
-Plugin 'tpope/vim-fugitive'
-Plugin 'tikhomirov/vim-glsl'
+Plugin 'bling/vim-airline' " Lean & mean status/tabline.
+Plugin 'tpope/vim-fugitive' " Git plugin so awesome it should be illegal.
+Plugin 'tikhomirov/vim-glsl' " GLSL syntax.
 
 call vundle#end()
 " End plugin setup
@@ -140,3 +141,13 @@ if has("gui_running")
   syntax on
   colorscheme xoria256
 endif
+
+"-----------------------------------------------------------------------
+" Airline settings
+"-----------------------------------------------------------------------
+let g:airline_theme='durant'
+let perc='%3p%%'
+" Like default airline statusline, but displays real and virtual column number.
+let lineno='%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#'
+let colno=':%3c%V'
+let g:airline_section_z=perc . ' ' . lineno . ' ' . colno
