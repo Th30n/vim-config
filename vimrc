@@ -16,6 +16,7 @@ endif
 Plugin 'bling/vim-airline' " Lean & mean status/tabline.
 Plugin 'tpope/vim-fugitive' " Git plugin so awesome it should be illegal.
 Plugin 'tikhomirov/vim-glsl' " GLSL syntax.
+Plugin 'tpope/vim-surround' " Quoting/parenthesizing made simple.
 
 call vundle#end()
 " End plugin setup
