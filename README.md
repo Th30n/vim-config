@@ -1,6 +1,7 @@
-# Teon Banek's Vim configuration
+# My Vim configuration
 
 Very simple vim configuration (will probably grow over time).
+The configuration tries to be portable across Linux and Windows.
 
 Requirements:
 -------------
@@ -11,7 +12,7 @@ Requirements:
 Installation:
 -------------
 
-* Remove (backup before) `~/.vimrc`, `~/.gvimrc` files and `~/.vim` directory
+* Remove (**backup** before) `~/.vimrc`, `~/.gvimrc` files and `~/.vim` directory
 * `git clone https://github.com/Th30n/vim-config.git ~/.vim`
 * Install [Vundle](https://github.com/gmarik/Vundle.vim) via
   `git submodule update --init`
