@@ -85,6 +85,15 @@ if &t_Co > 2
   endif
 endif
 
+" Setup encoding.
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8 " Default for new files.
+endif
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
