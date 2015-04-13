@@ -32,6 +32,7 @@ set ruler " Show cursor position.
 set laststatus=2 " Always display status line.
 set ch=2  " Make command line two lines high.
 
+set scrolloff=3 " Always have some context around cursor.
 " Display matches when using auto complete on command line.
 set wildmenu
 " Show partially inputted commands (in lower right corner).
@@ -62,6 +63,10 @@ cmap w!! w !sudo tee > /dev/null %
 
 " Prepare lcd relative to current file.
 nmap <Leader>cd :lcd %:h/
+" Edit relative to current file.
+nmap <Leader>e :e %:h/
+nmap <Leader>sp :sp %:h/
+nmap <Leader>vsp :vsp %:h/
 " Turn off highlight search.
 nmap <silent> <Leader>n :nohlsearch<CR>
 
@@ -107,8 +112,8 @@ if has("autocmd")
   augroup vimrcEx
   au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  " For all text files set 'textwidth' to 79 characters.
+  autocmd FileType text setlocal textwidth=79
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
