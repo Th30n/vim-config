@@ -17,6 +17,9 @@ Plugin 'bling/vim-airline' " Lean & mean status/tabline.
 Plugin 'tpope/vim-fugitive' " Git plugin so awesome it should be illegal.
 Plugin 'tikhomirov/vim-glsl' " GLSL syntax.
 Plugin 'tpope/vim-surround' " Quoting/parenthesizing made simple.
+" TODO: Test these light themes
+Plugin 'endel/vim-github-colorscheme' " Github style color scheme.
+Plugin 'summerfruit256.vim' " Another light theme.
 
 call vundle#end()
 " End plugin setup
@@ -155,6 +158,26 @@ if has("gui_running")
   syntax on
   colorscheme xoria256
 endif
+
+"-----------------------------------------------------------------------
+" Theme Switching
+"-----------------------------------------------------------------------
+
+" I prefer dark themes, but when the sun starts shining at my screen...
+function! LightTheme()
+  set background=light
+  colorscheme summerfruit256
+  AirlineTheme light
+endfunction
+
+function! DarkTheme()
+  set background=dark
+  colorscheme xoria256
+  AirlineTheme durant
+endfunction
+
+command! LightTheme call LightTheme()
+command! DarkTheme call DarkTheme()
 
 "-----------------------------------------------------------------------
 " Airline settings
