@@ -59,13 +59,18 @@ if has("unix")
   set shell=zsh
 endif
 
+"-----------------------------------------------------------------------
 " Key mappings
+"-----------------------------------------------------------------------
 
 " Write file with sudo.
 cnoremap w!! w !sudo tee > /dev/null %
 
 " Uppercase last word in insert mode.
-inoremap <C-U> <Esc>viwUea
+inoremap <C-U> <Esc>viwUwgea
+
+" On my keyboard '\' isn't far away.
+let mapleader = "\\"
 
 " Prepare lcd relative to current file.
 nnoremap <Leader>cd :lcd %:h/
