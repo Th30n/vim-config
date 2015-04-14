@@ -69,9 +69,15 @@ nmap <Leader>cd :lcd %:h/
 " Edit relative to current file.
 nmap <Leader>e :e %:h/
 nmap <Leader>sp :sp %:h/
-nmap <Leader>vsp :vsp %:h/
+nmap <Leader>vs :vsp %:h/
 " Turn off highlight search.
 nmap <silent> <Leader>n :nohlsearch<CR>
+" I prefer storing my sessions inside vim dir.
+nmap <Leader>mks :mks! ~/.vim/sessions/
+nmap <Leader>sos :so ~/.vim/sessions/
+" Easy vimrc access
+nmap <silent> <Leader>ev :tabe $MYVIMRC<CR>
+nmap <silent> <Leader>sv :so $MYVIMRC<CR>
 
 " Emacs style command line editing
 cnoremap <C-A> <Home>
