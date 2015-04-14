@@ -62,27 +62,30 @@ endif
 " Key mappings
 
 " Write file with sudo.
-cmap w!! w !sudo tee > /dev/null %
+cnoremap w!! w !sudo tee > /dev/null %
+
+" Uppercase last word in insert mode.
+inoremap <C-U> <Esc>viwUea
 
 " Prepare lcd relative to current file.
-nmap <Leader>cd :lcd %:h/
+nnoremap <Leader>cd :lcd %:h/
 " Edit relative to current file.
-nmap <Leader>e :e %:h/
-nmap <Leader>sp :sp %:h/
-nmap <Leader>vs :vsp %:h/
+nnoremap <Leader>e :e %:h/
+nnoremap <Leader>sp :sp %:h/
+nnoremap <Leader>vs :vsp %:h/
 " Turn off highlight search.
-nmap <silent> <Leader>n :nohlsearch<CR>
+nnoremap <silent> <Leader>n :nohlsearch<CR>
 " I prefer storing my sessions inside vim dir.
 if has("win32")
-  nmap<Leader>mks :mks! ~/vimfiles/sessions/
-  nmap<Leader>sos :so ~/vimfiles/sessions/
+  nnoremap<Leader>mks :mks! ~/vimfiles/sessions/
+  nnoremap<Leader>sos :so ~/vimfiles/sessions/
 else
-  nmap <Leader>mks :mks! ~/.vim/sessions/
-  nmap <Leader>sos :so ~/.vim/sessions/
+  nnoremap <Leader>mks :mks! ~/.vim/sessions/
+  nnoremap <Leader>sos :so ~/.vim/sessions/
 endif
 " Easy vimrc access
-nmap <silent> <Leader>ev :tabe $MYVIMRC<CR>
-nmap <silent> <Leader>sv :so $MYVIMRC<CR>
+nnoremap <silent> <Leader>ev :tabe $MYVIMRC<CR>
+nnoremap <silent> <Leader>sv :so $MYVIMRC<CR>
 
 " Emacs style command line editing
 cnoremap <C-A> <Home>
