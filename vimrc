@@ -73,8 +73,13 @@ nmap <Leader>vs :vsp %:h/
 " Turn off highlight search.
 nmap <silent> <Leader>n :nohlsearch<CR>
 " I prefer storing my sessions inside vim dir.
-nmap <Leader>mks :mks! ~/.vim/sessions/
-nmap <Leader>sos :so ~/.vim/sessions/
+if has("win32")
+  nmap<Leader>mks :mks! ~/vimfiles/sessions/
+  nmap<Leader>sos :so ~/vimfiles/sessions/
+else
+  nmap <Leader>mks :mks! ~/.vim/sessions/
+  nmap <Leader>sos :so ~/.vim/sessions/
+endif
 " Easy vimrc access
 nmap <silent> <Leader>ev :tabe $MYVIMRC<CR>
 nmap <silent> <Leader>sv :so $MYVIMRC<CR>
