@@ -69,6 +69,18 @@ cnoremap w!! w !sudo tee > /dev/null %
 " Uppercase last word in insert mode.
 inoremap <C-U> <Esc>viwUwgea
 
+" Always move on display lines
+nnoremap j gj
+nnoremap k gk
+
+" Hopefully I don't need to actually type these.
+inoremap jj <Esc>
+cnoremap jj <Esc>
+
+" Move line up or down
+nnoremap <BS> ddkP
+nnoremap - ddp
+
 " Easier clipboard copy and paste
 nnoremap cy "+y
 nnoremap cyy "+yy
