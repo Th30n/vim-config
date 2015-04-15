@@ -69,6 +69,13 @@ cnoremap w!! w !sudo tee > /dev/null %
 " Uppercase last word in insert mode.
 inoremap <C-U> <Esc>viwUwgea
 
+" Easier clipboard copy and paste
+nnoremap cy "+y
+nnoremap cyy "+yy
+nnoremap cY "+Y
+nnoremap cp "+p
+nnoremap cP "+P
+
 " On my keyboard '\' isn't far away.
 let mapleader = "\\"
 
