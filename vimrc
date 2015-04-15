@@ -83,7 +83,6 @@ nnoremap - ddp
 
 " Easier clipboard copy and paste
 nnoremap cy "+y
-nnoremap cyy "+yy
 nnoremap cY "+Y
 nnoremap cp "+p
 nnoremap cP "+P
