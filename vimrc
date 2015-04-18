@@ -223,11 +223,11 @@ command! DarkTheme call DarkTheme()
 " Airline settings
 "-----------------------------------------------------------------------"{{{
 let g:airline_theme='durant'
-let perc='%3p%%'
+let s:perc='%3p%%'
 " Like default airline statusline, but displays real and virtual column number.
-let lineno='%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#'
-let colno=':%3c%V'
-let g:airline_section_z=perc . ' ' . lineno . ' ' . colno
+let s:lineno='%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#'
+let s:colno=':%3c%V'
+let g:airline_section_z=s:perc . ' ' . s:lineno . ' ' . s:colno
 " Set up unicode symbols.
 " They don't work most of the time on Windows.
 if !has('win32')
