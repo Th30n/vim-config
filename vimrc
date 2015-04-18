@@ -24,6 +24,15 @@ Plugin 'summerfruit256.vim' " Another light theme.
 call vundle#end()
 " End plugin setup
 
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin indent on
+
+" Read man pages with :Man.
+runtime ftplugin/man.vim
+
 " Tab control
 " TODO: Set this per file type.
 set expandtab " Turn tabs into spaces.
@@ -61,7 +70,7 @@ endif
 
 "-----------------------------------------------------------------------
 " Key mappings
-"-----------------------------------------------------------------------
+"-----------------------------------------------------------------------"{{{
 
 " Write file with sudo.
 cnoremap w!! w !sudo tee > /dev/null %
@@ -120,6 +129,7 @@ cnoremap <C-P> <Up>
 cnoremap <Esc>b <S-Left>
 cnoremap <Esc>f <S-Right>
 cnoremap <Esc><BS> <C-W>
+"}}}
 
 " Switch syntax highlighting on, when the terminal has colors.
 if &t_Co > 2
@@ -139,43 +149,35 @@ if has("multi_byte")
   setglobal fileencoding=utf-8 " Default for new files.
 endif
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
+"-----------------------------------------------------------------------
+" Auto commands
+"-----------------------------------------------------------------------"{{{
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+" Put these in an autocmd group, so that we can delete them easily.
+augroup vimrcEx
+au!
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+" For all text files set 'textwidth' to 78 characters.
+autocmd FileType text,markdown setlocal textwidth=78
+" Auto fold marked sections in vim files.
+autocmd FileType vim setlocal foldmethod=marker
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text,markdown setlocal textwidth=78
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+" Also don't do it when the mark is in the first line, that is the default
+" position when opening a file.
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+augroup END
+"}}}
 
-  augroup END
-
-  " loads plugin for reading man pages using ":Man"
-  runtime ftplugin/man.vim
-
-else
-
-  set autoindent
-
-endif " has("autocmd")
-
+"-----------------------------------------------------------------------
+" GUI settings
+"-----------------------------------------------------------------------"{{{
 if has("gui_running")
   " GUI options
   set guioptions=agic
@@ -195,10 +197,11 @@ if has("gui_running")
   syntax on
   colorscheme xoria256
 endif
+"}}}
 
 "-----------------------------------------------------------------------
 " Theme Switching
-"-----------------------------------------------------------------------
+"-----------------------------------------------------------------------"{{{
 
 " I prefer dark themes, but when the sun starts shining at my screen...
 function! LightTheme()
@@ -215,10 +218,10 @@ endfunction
 
 command! LightTheme call LightTheme()
 command! DarkTheme call DarkTheme()
-
+"}}}
 "-----------------------------------------------------------------------
 " Airline settings
-"-----------------------------------------------------------------------
+"-----------------------------------------------------------------------"{{{
 let g:airline_theme='durant'
 let perc='%3p%%'
 " Like default airline statusline, but displays real and virtual column number.
@@ -235,3 +238,4 @@ if !has('win32')
   let g:airline_right_sep = '◀'
   let g:airline_symbols.linenr = 'λ'
 endif
+"}}}
