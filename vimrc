@@ -87,7 +87,7 @@ inoremap jj <Esc>
 cnoremap jj <Esc>
 
 " Move line up or down
-nnoremap <BS> ddkP
+nnoremap + ddkP
 nnoremap - ddp
 
 " Easier clipboard copy and paste
