@@ -164,6 +164,11 @@ au!
 autocmd FileType text,markdown setlocal textwidth=78
 " Auto fold marked sections in vim files.
 autocmd FileType vim setlocal foldmethod=marker
+" Set tabs to 8 for man pages.
+autocmd FileType man
+  \ setlocal tabstop=8 |
+  \ setlocal shiftwidth=8 |
+  \ setlocal softtabstop=0
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
