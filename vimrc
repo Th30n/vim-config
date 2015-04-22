@@ -17,6 +17,7 @@ Plugin 'bling/vim-airline' " Lean & mean status/tabline.
 Plugin 'tpope/vim-fugitive' " Git plugin so awesome it should be illegal.
 Plugin 'tikhomirov/vim-glsl' " GLSL syntax.
 Plugin 'tpope/vim-surround' " Quoting/parenthesizing made simple.
+Plugin 'kien/ctrlp.vim' " Fuzzy finding.
 " TODO: Test these light themes
 Plugin 'endel/vim-github-colorscheme' " Github style color scheme.
 Plugin 'summerfruit256.vim' " Another light theme.
@@ -47,6 +48,8 @@ set ch=2  " Make command line two lines high.
 set scrolloff=3 " Always have some context around cursor.
 " Display matches when using auto complete on command line.
 set wildmenu
+" Ignore on wildcard expansion and file completion.
+set wildignore+=*.o,*.obj,*.pyc,*.git
 " Show partially inputted commands (in lower right corner).
 set showcmd
 " Highlight matched search patterns.
@@ -238,4 +241,16 @@ if !has('win32')
   let g:airline_right_sep = '◀'
   let g:airline_symbols.linenr = 'λ'
 endif
+"}}}
+"-----------------------------------------------------------------------
+" CtrlP settings
+"-----------------------------------------------------------------------"{{{
+let g:ctrlp_custom_ignore = '\v'
+let g:ctrlp_custom_ignore .= '%('
+let g:ctrlp_custom_ignore .= '\.%(git|hg|svn)$|'
+let g:ctrlp_custom_ignore .= '\.%(o|obj|so|pyc|png|jpeg|jpg|bmp|ogg)$|'
+let g:ctrlp_custom_ignore .= '[\/]*build'
+let g:ctrlp_custom_ignore .= ')'
+nnoremap <Leader>fe :CtrlP .<CR>
+nnoremap <Leader>fb :CtrlPBuffer<CR>
 "}}}
