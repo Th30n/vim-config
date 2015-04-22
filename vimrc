@@ -69,6 +69,7 @@ set autoread
 
 if has("unix")
   set shell=zsh
+  set grepprg=grep\ -En\ $*
 endif
 
 "-----------------------------------------------------------------------
