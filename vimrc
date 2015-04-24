@@ -1,4 +1,4 @@
-" My very simple vimrc file.
+" My simple vimrc file.
 "
 " Author: Teon Banek <theongugl@gmail.com>
 

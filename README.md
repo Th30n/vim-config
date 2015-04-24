@@ -1,6 +1,6 @@
 # My Vim configuration
 
-Very simple vim configuration (will probably grow over time).
+Simple vim configuration.
 The configuration tries to be portable across Linux and Windows.
 
 ## Requirements:
@@ -12,6 +12,7 @@ The configuration tries to be portable across Linux and Windows.
 
 * Remove (**backup** before) `~/.vimrc`, `~/.gvimrc` files and `~/.vim` directory
 * `git clone https://github.com/Th30n/vim-config.git ~/.vim`
+* `cd ~/.vim`
 * Install [Vundle](https://github.com/gmarik/Vundle.vim) via
   `git submodule update --init`
 * Start Vim and run `:PluginInstall` to install plugins
