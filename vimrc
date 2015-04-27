@@ -254,7 +254,7 @@ endif
 let g:ctrlp_custom_ignore = '\v'
 let g:ctrlp_custom_ignore .= '%('
 let g:ctrlp_custom_ignore .= '\.%(git|hg|svn)$|'
-let g:ctrlp_custom_ignore .= '\.%(o|obj|so|pyc|png|jpeg|jpg|bmp|ogg)$|'
+let g:ctrlp_custom_ignore .= '\.%(o|obj|so|pyc|png|jpeg|jpg|bmp|ogg|odt|pdf)$|'
 let g:ctrlp_custom_ignore .= '[\/]*build'
 let g:ctrlp_custom_ignore .= ')'
 nnoremap <Leader>fe :CtrlP .<CR>
