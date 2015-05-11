@@ -52,6 +52,8 @@ set wildmenu
 set wildignore+=*.o,*.obj,*.pyc,*.git
 " Show partially inputted commands (in lower right corner).
 set showcmd
+" Wait time for shortcut continuation (in ms).
+set timeoutlen=500
 " Highlight matched search patterns.
 set hlsearch
 " Incremental search.
