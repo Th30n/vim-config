@@ -91,6 +91,10 @@ nnoremap k gk
 " Hopefully I don't need to actually type these.
 inoremap jj <Esc>
 cnoremap jj <Esc>
+inoremap jk <Esc>
+cnoremap jk <Esc>
+inoremap kj <Esc>
+cnoremap kj <Esc>
 
 " Move line up or down
 nnoremap + ddkP
