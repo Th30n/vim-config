@@ -68,6 +68,8 @@ set virtualedit=all
 set showfulltag
 " Reread a file that changed on disk.
 set autoread
+" Allow hiding modified/unsaved buffers. Hopefully it won't cause trouble.
+set hidden
 
 if has("unix")
   set shell=zsh
