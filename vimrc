@@ -176,6 +176,8 @@ autocmd FileType vim setlocal foldmethod=marker
 " Turn on spell checking in commit messages.
 autocmd FileType gitcommit
   \ setlocal spelllang=en spell
+" Set tabs to 8 for C/C++ code.
+autocmd FileType c,cpp setlocal tabstop=8
 " Set tabs to 8 for man pages.
 autocmd FileType man
   \ setlocal tabstop=8 |
