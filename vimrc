@@ -183,7 +183,9 @@ autocmd FileType man
   \ setlocal tabstop=8 |
   \ setlocal shiftwidth=8 |
   \ setlocal softtabstop=0
-
+" Setup for Python code.
+autocmd FileType python
+  \ iabbrev <buffer> pdb import pdb; pdb.set_trace()
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
