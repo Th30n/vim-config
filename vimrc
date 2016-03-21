@@ -5,21 +5,22 @@
 " Set up Vundle plugin manager
 filetype off
 if has('win32')
-  set runtimepath+=~/vimfiles/bundle/vundle
+  set runtimepath+=~/vimfiles/bundle/Vundle.vim
   call vundle#begin('~/vimfiles/bundle')
 else
-  set runtimepath+=~/.vim/bundle/vundle
+  set runtimepath+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
 endif
 
 " Plugins
-Plugin 'bling/vim-airline' " Lean & mean status/tabline.
+Plugin 'VundleVim/Vundle.vim' " Manage itself.
+
+Plugin 'vim-airline/vim-airline' " Lean & mean status/tabline.
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive' " Git plugin so awesome it should be illegal.
 Plugin 'tikhomirov/vim-glsl' " GLSL syntax.
 Plugin 'tpope/vim-surround' " Quoting/parenthesizing made simple.
 Plugin 'kien/ctrlp.vim' " Fuzzy finding.
-" TODO: Test these light themes
-Plugin 'endel/vim-github-colorscheme' " Github style color scheme.
 Plugin 'summerfruit256.vim' " Another light theme.
 
 call vundle#end()
