@@ -179,11 +179,12 @@ autocmd FileType gitcommit
   \ setlocal spelllang=en spell
 " Set tabs to 8 for C/C++ code.
 autocmd FileType c,cpp setlocal tabstop=8
-" Set tabs to 8 for man pages.
-autocmd FileType man
+" Set tabs to 8 for man pages and gitconfig.
+autocmd FileType man,gitconfig
   \ setlocal tabstop=8 |
   \ setlocal shiftwidth=8 |
-  \ setlocal softtabstop=0
+  \ setlocal softtabstop=0 |
+  \ setlocal noexpandtab
 " Setup for Python code.
 autocmd FileType python
   \ iabbrev <buffer> pdb import pdb; pdb.set_trace()
