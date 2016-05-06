@@ -85,7 +85,7 @@ endif
 cnoremap w!! w !sudo tee > /dev/null %
 
 " Uppercase last word in insert mode.
-inoremap <C-U> <Esc>viwUwgea
+inoremap <C-U> <Esc>vbU`]a
 
 " Always move on display lines
 nnoremap j gj
