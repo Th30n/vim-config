@@ -277,3 +277,8 @@ let g:ctrlp_custom_ignore .= ')'
 nnoremap <Leader>fe :CtrlP .<CR>
 nnoremap <Leader>fb :CtrlPBuffer<CR>
 "}}}
+
+" Load local stuff.
+for file_path in globpath("~/.vim/local", "*.vim", 0, 1)
+  exec "source" file_path
+endfor
