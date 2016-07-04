@@ -17,9 +17,10 @@ Plugin 'VundleVim/Vundle.vim' " Manage itself.
 
 Plugin 'vim-airline/vim-airline' " Lean & mean status/tabline.
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive' " Git plugin so awesome it should be illegal.
 Plugin 'tikhomirov/vim-glsl' " GLSL syntax.
+Plugin 'tpope/vim-fugitive' " Git plugin so awesome it should be illegal.
 Plugin 'tpope/vim-surround' " Quoting/parenthesizing made simple.
+Plugin 'tpope/vim-repeat' " Repeat supported plugin maps with '.'.
 Plugin 'kien/ctrlp.vim' " Fuzzy finding.
 Plugin 'summerfruit256.vim' " Another light theme.
 
