@@ -180,6 +180,13 @@ autocmd FileType gitcommit
   \ setlocal spelllang=en spell
 " Set tabs to 8 for C/C++ code.
 autocmd FileType c,cpp setlocal tabstop=8
+" Setup for C++ code.
+autocmd FileType cpp
+  \ iabbrev <buffer> stc static_cast|
+  \ iabbrev <buffer> dyc dynamic_cast|
+  \ iabbrev <buffer> ric reinterpret_cast|
+  \ iabbrev <buffer> sptr std::shared_ptr|
+  \ iabbrev <buffer> uptr std::unique_ptr
 " Set tabs to 8 for man pages and gitconfig.
 autocmd FileType man,gitconfig
   \ setlocal tabstop=8 |
