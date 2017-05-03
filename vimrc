@@ -60,7 +60,8 @@ set timeoutlen=500
 set hlsearch
 " Incremental search.
 set incsearch
-" Display relative line numbers.
+" Display relative line numbers with current line number.
+set number
 set relativenumber
 " Allow mouse.
 set mouse=a
