@@ -176,8 +176,8 @@ au!
 autocmd FileType text,markdown setlocal textwidth=78
 " Auto fold marked sections in vim files.
 autocmd FileType vim setlocal foldmethod=marker
-" Turn on spell checking in commit messages.
-autocmd FileType gitcommit
+" Turn on spell checking in commit messages and markdown.
+autocmd FileType gitcommit,markdown
   \ setlocal spelllang=en spell
 " Set tabs to 8 for C/C++ code.
 autocmd FileType c,cpp setlocal tabstop=8
