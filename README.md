@@ -13,7 +13,7 @@ The configuration tries to be portable across Linux and Windows.
 * Remove (**backup** before) `~/.vimrc`, `~/.gvimrc` files and `~/.vim` directory
 * `git clone https://github.com/Th30n/vim-config.git ~/.vim`
 * `cd ~/.vim`
-* Install [Vundle](https://github.com/gmarik/Vundle.vim) via
+* Install [Vundle](https://github.com/VundleVim/Vundle.vim) via
   `git submodule update --init`
 * Start Vim and run `:PluginInstall` to install plugins
 * You may need to restart Vim after plugin installation
