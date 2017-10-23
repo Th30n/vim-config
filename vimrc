@@ -15,6 +15,7 @@ endif
 " Plugins
 Plugin 'VundleVim/Vundle.vim' " Manage itself.
 
+Plugin 'mileszs/ack.vim' " Light wrapper arround grepprg and quickfix.
 Plugin 'vim-airline/vim-airline' " Lean & mean status/tabline.
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tikhomirov/vim-glsl' " GLSL syntax.
@@ -286,6 +287,11 @@ let g:ctrlp_custom_ignore .= '[\/]*build'
 let g:ctrlp_custom_ignore .= ')'
 nnoremap <Leader>fe :CtrlP .<CR>
 nnoremap <Leader>fb :CtrlPBuffer<CR>
+"}}}
+"-----------------------------------------------------------------------
+" Ack settings
+"-----------------------------------------------------------------------"{{{
+let g:ackprg = 'ag --vimgrep'
 "}}}
 
 " Load local stuff.
