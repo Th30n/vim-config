@@ -287,6 +287,7 @@ let g:ctrlp_custom_ignore .= '[\/]*build'
 let g:ctrlp_custom_ignore .= ')'
 nnoremap <Leader>fe :CtrlP .<CR>
 nnoremap <Leader>fb :CtrlPBuffer<CR>
+nnoremap <Leader>ft :CtrlPTag<CR>
 "}}}
 "-----------------------------------------------------------------------
 " Ack settings
