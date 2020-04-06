@@ -199,6 +199,9 @@ autocmd FileType man,gitconfig
 autocmd FileType python
   \ iabbrev <buffer> pdb import pdb; pdb.set_trace()|
   \ iabbrev <buffer> trb import traceback; traceback.print_stack()
+" Setup for Rust code.
+autocmd FileType rust
+  \ setlocal formatprg=rustfmt
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
