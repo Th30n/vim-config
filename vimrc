@@ -201,7 +201,9 @@ autocmd FileType python
   \ iabbrev <buffer> trb import traceback; traceback.print_stack()
 " Setup for Rust code.
 autocmd FileType rust
-  \ setlocal formatprg=rustfmt
+  \ setlocal formatprg=rustfmt|
+  \ setlocal makeprg=cargo|
+  \ setlocal errorformat=%Wwarning:\ %m,%Eerror:\ %m,%Eerror[E%n]:\ %m,%Inote:\ %m,%C%*\\s-->\ %f:%l:%c
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
