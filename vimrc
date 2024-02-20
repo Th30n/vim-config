@@ -2,6 +2,10 @@
 "
 " Author: Teon Banek <theongugl@gmail.com>
 
+if getenv('TERM') == 'xterm-kitty'
+  set term=kitty
+endif
+
 " Set up Vundle plugin manager
 filetype off
 if has('win32')
