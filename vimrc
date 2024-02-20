@@ -28,6 +28,7 @@ Plugin 'tpope/vim-surround' " Quoting/parenthesizing made simple.
 Plugin 'tpope/vim-repeat' " Repeat supported plugin maps with '.'.
 Plugin 'kien/ctrlp.vim' " Fuzzy finding.
 Plugin 'summerfruit256.vim' " Another light theme.
+Plugin 'junegunn/fzf' " Fuzzy finding (requires `fzf` installed on system).
 
 call vundle#end()
 " End plugin setup
@@ -297,6 +298,10 @@ let g:ctrlp_custom_ignore .= ')'
 nnoremap <Leader>fe :CtrlP .<CR>
 nnoremap <Leader>fb :CtrlPBuffer<CR>
 nnoremap <Leader>ft :CtrlPTag<CR>
+let g:ctrlp_map = '<Leader>ff' " Try out FZF instead of CtrlP
+nnoremap <C-p> :FZF<CR>
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.3, 'yoffset': 1.0 } }
 "}}}
 "-----------------------------------------------------------------------
 " Ack settings
