@@ -2,6 +2,8 @@
 "
 " Author: Teon Banek <theongugl@gmail.com>
 
+call timer_stopall()
+
 if getenv('TERM') == 'xterm-kitty'
   set term=kitty
 endif
@@ -29,6 +31,7 @@ Plugin 'tpope/vim-repeat' " Repeat supported plugin maps with '.'.
 Plugin 'kien/ctrlp.vim' " Fuzzy finding.
 Plugin 'summerfruit256.vim' " Another light theme.
 Plugin 'junegunn/fzf' " Fuzzy finding (requires `fzf` installed on system).
+Plugin 'morhetz/gruvbox' " Gruvbox light & dark themes.
 
 call vundle#end()
 " End plugin setup
@@ -83,6 +86,15 @@ set hidden
 if has("unix")
   set shell=zsh
   set grepprg=grep\ -En\ $*
+endif
+
+" Setup encoding.
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8 " Default for new files.
 endif
 
 "-----------------------------------------------------------------------
@@ -152,24 +164,6 @@ cnoremap <Esc>f <S-Right>
 cnoremap <Esc><BS> <C-W>
 "}}}
 
-" Switch syntax highlighting on, when the terminal has colors.
-if &t_Co > 2
-  syntax on
-  colorscheme torte
-  if &t_Co >= 256
-    colorscheme xoria256
-  endif
-endif
-
-" Setup encoding.
-if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
-  endif
-  set encoding=utf-8
-  setglobal fileencoding=utf-8 " Default for new files.
-endif
-
 "-----------------------------------------------------------------------
 " Auto commands
 "-----------------------------------------------------------------------"{{{
@@ -219,73 +213,12 @@ autocmd BufReadPost *
   \   exe "normal! g`\"" |
   \ endif
 
+" Use autocmd to setup colorscheme after all plugins are loaded.
+autocmd VimEnter * ++nested call ThemeForTimeOfDay(0)
+
 augroup END
 "}}}
 
-"-----------------------------------------------------------------------
-" GUI settings
-"-----------------------------------------------------------------------"{{{
-if has("gui_running")
-  " GUI options
-  set guioptions=agic
-  set guiheadroom=0 " set the whole screen height for the window
-
-  " GUI font
-  set antialias
-  if has("gui_gtk2")
-    set guifont=Inconsolata\ Medium\ 12,DejaVu\ Sans\ Mono\ 12
-  elseif has("gui_win32")
-    set guifont=Consolas:h10:cEASTEUROPE
-  endif
-
-  set laststatus=1 " display status line when multiple windows present
-  set mousehide " Hide the mouse when typing text
-
-  syntax on
-  colorscheme xoria256
-endif
-"}}}
-
-"-----------------------------------------------------------------------
-" Theme Switching
-"-----------------------------------------------------------------------"{{{
-
-" I prefer dark themes, but when the sun starts shining at my screen...
-function! LightTheme()
-  set background=light
-  colorscheme summerfruit256
-  AirlineTheme light
-endfunction
-
-function! DarkTheme()
-  set background=dark
-  colorscheme xoria256
-  AirlineTheme durant
-endfunction
-
-command! LightTheme call LightTheme()
-command! DarkTheme call DarkTheme()
-"}}}
-"-----------------------------------------------------------------------
-" Airline settings
-"-----------------------------------------------------------------------"{{{
-let g:airline_theme='durant'
-let s:perc='%3p%%'
-" Like default airline statusline, but displays real and virtual column number.
-let s:lineno='%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#'
-let s:colno=':%3c%V'
-let g:airline_section_z=s:perc . ' ' . s:lineno . ' ' . s:colno
-" Set up unicode symbols.
-" They don't work most of the time on Windows.
-if !has('win32')
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-  let g:airline_left_sep = '▶'
-  let g:airline_right_sep = '◀'
-  let g:airline_symbols.linenr = 'λ'
-endif
-"}}}
 "-----------------------------------------------------------------------
 " CtrlP settings
 "-----------------------------------------------------------------------"{{{
@@ -303,10 +236,118 @@ nnoremap <C-p> :FZF<CR>
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.3, 'yoffset': 1.0 } }
 "}}}
+
 "-----------------------------------------------------------------------
 " Ack settings
 "-----------------------------------------------------------------------"{{{
 let g:ackprg = 'rg --vimgrep'
+"}}}
+
+"-----------------------------------------------------------------------
+" Airline settings
+"-----------------------------------------------------------------------"{{{
+let s:perc='%3p%%'
+" Like default airline statusline, but displays real and virtual column number.
+let s:lineno='%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#'
+let s:colno=':%3c%V'
+let g:airline_section_z=s:perc . ' ' . s:lineno . ' ' . s:colno
+" Set up unicode symbols.
+" They don't work most of the time on Windows.
+if !has('win32')
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '◀'
+  let g:airline_symbols.linenr = 'λ'
+endif
+"}}}
+
+"-----------------------------------------------------------------------
+" Colorscheme & Theme
+"-----------------------------------------------------------------------"{{{
+
+" Check for terminal colors to enable syntax highlighting and more colors.
+if &t_Co > 2
+  syntax on
+  if &t_Co >= 256 && has("termguicolors")
+    set termguicolors
+  endif
+endif
+
+" gruvbox colorscheme needs to be customized before being enabled.
+let g:gruvbox_italic=1
+let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_contrast_light="hard"
+
+function! LightTheme()
+  set background=light
+  if &t_Co >= 256
+    if has("termguicolors")
+      colorscheme gruvbox
+      AirlineTheme gruvbox
+    else
+    colorscheme summerfruit256
+    AirlineTheme light
+    endif
+  elseif &t_Co > 2
+    colorscheme morning
+  endif
+endfunction
+
+function! DarkTheme()
+  set background=dark
+  if &t_Co >= 256
+    if has("termguicolors")
+      colorscheme gruvbox
+      AirlineTheme gruvbox
+    else
+    colorscheme xoria256
+    AirlineTheme durant
+    endif
+  elseif &t_Co > 2
+    colorscheme torte
+  endif
+endfunction
+
+command! LightTheme call LightTheme()
+command! DarkTheme call DarkTheme()
+
+function ThemeForTimeOfDay(timer)
+  let curr_hour=strftime("%H")
+  if curr_hour > 7 && curr_hour < 17
+    call LightTheme()
+  else
+    call DarkTheme()
+  endif
+endfunction
+
+command! ThemeForTimeOfDay call ThemeForTimeOfDay(0)
+
+call timer_start(60000, 'ThemeForTimeOfDay', {'repeat': -1})
+"}}}
+
+"-----------------------------------------------------------------------
+" GUI settings
+"-----------------------------------------------------------------------"{{{
+if has("gui_running")
+  " GUI options
+  set guioptions=agic
+  set guiheadroom=0 " set the whole screen height for the window
+
+  " GUI font
+  set antialias
+  if has("gui_gtk2") || has("gui_gtk3")
+    set guifont=FantasqueSansM\ Nerd\ Font\ Mono\ 14,DejaVu\ Sans\ Mono\ 12
+  elseif has("gui_win32")
+    set guifont=Consolas:h10:cEASTEUROPE
+  endif
+
+  set laststatus=1 " display status line when multiple windows present
+  set mousehide " Hide the mouse when typing text
+
+  syntax on
+endif
 "}}}
 
 " Load local stuff.
