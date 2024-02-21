@@ -118,7 +118,7 @@ nnoremap cp "+p
 nnoremap cP "+P
 
 " On my keyboard '\' isn't far away.
-let mapleader = "\\"
+let g:mapleader = "\\"
 
 " Prepare lcd relative to current file.
 nnoremap <Leader>cd :lcd %:h/
