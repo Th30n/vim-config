@@ -21,7 +21,6 @@ endif
 " Plugins
 Plugin 'VundleVim/Vundle.vim' " Manage itself.
 
-Plugin 'mileszs/ack.vim' " Light wrapper around grepprg and quickfix.
 Plugin 'vim-airline/vim-airline' " Lean & mean status/tabline.
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tikhomirov/vim-glsl' " GLSL syntax.
@@ -85,7 +84,8 @@ set hidden
 
 if has("unix")
   set shell=zsh
-  set grepprg=grep\ -En\ $*
+  set grepprg=rg\ --vimgrep\ $*
+  set grepformat=%f:%l:%c:%m
 endif
 
 " Setup encoding.
@@ -217,6 +217,9 @@ autocmd BufReadPost *
   \ if line("'\"") > 1 && line("'\"") <= line("$") |
   \   exe "normal! g`\"" |
   \ endif
+" Auto-open QuickFix or Location List for grep & make commands.
+autocmd QuickFixCmdPost grep*,vimgrep*,make cwindow
+autocmd QuickFixCmdPost lgrep*,lvimgrep*,lmake lwindow
 
 " Use autocmd to setup colorscheme after all plugins are loaded.
 autocmd VimEnter * ++nested call ThemeForTimeOfDay(0)
@@ -240,12 +243,6 @@ let g:ctrlp_map = '<Leader>ff' " Try out FZF instead of CtrlP
 nnoremap <C-p> :FZF<CR>
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.3, 'yoffset': 1.0 } }
-"}}}
-
-"-----------------------------------------------------------------------
-" Ack settings
-"-----------------------------------------------------------------------"{{{
-let g:ackprg = 'rg --vimgrep'
 "}}}
 
 "-----------------------------------------------------------------------
