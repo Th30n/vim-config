@@ -160,7 +160,9 @@ cnoremap <C-F> <Right>
 cnoremap <C-N> <Down>
 cnoremap <C-P> <Up>
 cnoremap <Esc>b <S-Left>
+cnoremap <M-b> <S-Left>
 cnoremap <Esc>f <S-Right>
+cnoremap <M-f> <S-Right>
 cnoremap <Esc><BS> <C-W>
 "}}}
 
