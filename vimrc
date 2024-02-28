@@ -293,7 +293,8 @@ function! LightTheme()
     AirlineTheme light
     endif
   elseif &t_Co > 2
-    colorscheme morning
+    colorscheme default
+    AirlineTheme term
   endif
 endfunction
 
@@ -308,7 +309,8 @@ function! DarkTheme()
     AirlineTheme durant
     endif
   elseif &t_Co > 2
-    colorscheme torte
+    colorscheme default
+    AirlineTheme term
   endif
 endfunction
 
