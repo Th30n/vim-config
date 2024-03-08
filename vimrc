@@ -27,7 +27,7 @@ Plugin 'tikhomirov/vim-glsl' " GLSL syntax.
 Plugin 'tpope/vim-fugitive' " Git plugin so awesome it should be illegal.
 Plugin 'tpope/vim-surround' " Quoting/parenthesizing made simple.
 Plugin 'tpope/vim-repeat' " Repeat supported plugin maps with '.'.
-Plugin 'kien/ctrlp.vim' " Fuzzy finding.
+Plugin 'ctrlpvim/ctrlp.vim' " Fuzzy finding.
 Plugin 'summerfruit256.vim' " Another light theme.
 Plugin 'junegunn/fzf' " Fuzzy finding (requires `fzf` installed on system).
 Plugin 'morhetz/gruvbox' " Gruvbox light & dark themes.
