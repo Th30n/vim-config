@@ -358,6 +358,7 @@ if has("gui_running")
   " GUI font
   if has("gui_gtk2") || has("gui_gtk3")
     set guifont=FantasqueSansM\ Nerd\ Font\ Mono\ 14
+    set guiligatures=!\"#$%&()*+-./:<=>?@[]^_{\|~
   elseif has("gui_win32")
     set guifont=Consolas:h10:cEASTEUROPE
   endif
