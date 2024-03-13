@@ -2,8 +2,6 @@
 "
 " Author: Teon Banek <theongugl@gmail.com>
 
-call timer_stopall()
-
 if !has("gui_running") && getenv('TERM') == 'xterm-kitty'
   set term=kitty
 endif
@@ -299,6 +297,7 @@ function! LightTheme()
     colorscheme default
     AirlineTheme term
   endif
+  let s:current_theme = "light"
 endfunction
 
 function! DarkTheme()
@@ -315,6 +314,7 @@ function! DarkTheme()
     colorscheme default
     AirlineTheme term
   endif
+  let s:current_theme = "dark"
 endfunction
 
 command! LightTheme call LightTheme()
@@ -323,15 +323,28 @@ command! DarkTheme call DarkTheme()
 function ThemeForTimeOfDay(timer)
   let curr_hour=strftime("%H")
   if curr_hour > 7 && curr_hour < 17
+    " Avoid flicker (primarily in GVim) by not resetting the same theme.
+    " Done here, so that `LightTheme` can be used unconditionally.
+    if exists("s:current_theme") && s:current_theme == "light"
+      return
+    endif
     call LightTheme()
   else
+    " Avoid flicker (primarily in GVim) by not resetting the same theme.
+    " Done here, so that `DarkTheme` can be used unconditionally.
+    if exists("s:current_theme") && s:current_theme == "dark"
+      return
+    endif
     call DarkTheme()
   endif
 endfunction
 
 command! ThemeForTimeOfDay call ThemeForTimeOfDay(0)
 
-call timer_start(60000, 'ThemeForTimeOfDay', {'repeat': -1})
+if exists("s:theme_for_time_of_day_timer")
+  call timer_stop(s:theme_for_time_of_day_timer)
+endif
+let s:theme_for_time_of_day_timer = timer_start(60000, 'ThemeForTimeOfDay', {'repeat': -1})
 "}}}
 
 "-----------------------------------------------------------------------
