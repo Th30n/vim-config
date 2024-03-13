@@ -281,6 +281,9 @@ endif
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_contrast_light="hard"
+if !has("gui_running")
+  let g:gruvbox_guisp_fallback="fg"
+endif
 
 function! LightTheme()
   set background=light
