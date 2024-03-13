@@ -4,7 +4,7 @@
 
 call timer_stopall()
 
-if getenv('TERM') == 'xterm-kitty'
+if !has("gui_running") && getenv('TERM') == 'xterm-kitty'
   set term=kitty
 endif
 
@@ -343,14 +343,12 @@ if has("gui_running")
   set guiheadroom=0 " set the whole screen height for the window
 
   " GUI font
-  set antialias
   if has("gui_gtk2") || has("gui_gtk3")
-    set guifont=FantasqueSansM\ Nerd\ Font\ Mono\ 14,DejaVu\ Sans\ Mono\ 12
+    set guifont=FantasqueSansM\ Nerd\ Font\ Mono\ 14
   elseif has("gui_win32")
     set guifont=Consolas:h10:cEASTEUROPE
   endif
 
-  set laststatus=1 " display status line when multiple windows present
   set mousehide " Hide the mouse when typing text
 
   syntax on
