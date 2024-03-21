@@ -172,8 +172,12 @@ cnoremap <Esc><BS> <C-W>
 augroup vimrcEx
 au!
 
-" For all text files set 'textwidth' to 78 characters.
-autocmd FileType text,markdown setlocal textwidth=78
+" For all text files set 'textwidth' to 78 characters. Also set visual
+" line breaking that preserves indentation.
+autocmd FileType text,markdown
+  \ setlocal textwidth=78 |
+  \ setlocal linebreak |
+  \ setlocal breakindent
 " Auto fold marked sections in vim files.
 autocmd FileType vim setlocal foldmethod=marker
 " Turn on spell checking in commit messages and markdown.
