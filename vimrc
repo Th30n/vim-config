@@ -325,8 +325,16 @@ command! LightTheme call LightTheme()
 command! DarkTheme call DarkTheme()
 
 function ThemeForTimeOfDay(timer)
-  let curr_hour=strftime("%H")
-  if curr_hour > 7 && curr_hour < 17
+  let curr_hour = strftime("%H")
+  let curr_month = strftime("%m")
+  let morning_hour = 8
+  let evening_hour = 16
+  " Setup different hours for Feb---Aug
+  if curr_month >= 2 && curr_month <= 8
+    let morning_hour = 7
+    let evening_hour = 17
+  endif
+  if curr_hour > morning_hour && curr_hour < evening_hour
     " Avoid flicker (primarily in GVim) by not resetting the same theme.
     " Done here, so that `LightTheme` can be used unconditionally.
     if exists("s:current_theme") && s:current_theme == "light"
