@@ -288,14 +288,18 @@ if !has("gui_running")
 endif
 
 function! LightTheme()
+  if exists("s:current_theme") && s:current_theme == "light"
+    " Avoid flicker (primarily in GVim) by not resetting the same theme.
+    return
+  endif
   set background=light
   if &t_Co >= 256
     if has("termguicolors")
       colorscheme gruvbox
       AirlineTheme gruvbox
     else
-    colorscheme summerfruit256
-    AirlineTheme light
+      colorscheme summerfruit256
+      AirlineTheme light
     endif
   elseif &t_Co > 2
     colorscheme default
@@ -305,14 +309,18 @@ function! LightTheme()
 endfunction
 
 function! DarkTheme()
+  if exists("s:current_theme") && s:current_theme == "dark"
+    " Avoid flicker (primarily in GVim) by not resetting the same theme.
+    return
+  endif
   set background=dark
   if &t_Co >= 256
     if has("termguicolors")
       colorscheme gruvbox
       AirlineTheme gruvbox
     else
-    colorscheme xoria256
-    AirlineTheme durant
+      colorscheme xoria256
+      AirlineTheme durant
     endif
   elseif &t_Co > 2
     colorscheme default
@@ -325,6 +333,20 @@ command! LightTheme call LightTheme()
 command! DarkTheme call DarkTheme()
 
 function ThemeForTimeOfDay(timer)
+  if !empty(exepath("theme-for-time-of-day"))
+    let theme = trim(system("theme-for-time-of-day"))
+    if v:shell_error
+      echo "'theme-for-time-of-day' failed"
+    elseif theme == "light"
+      call LightTheme()
+      return
+    elseif theme == "dark"
+      call DarkTheme()
+      return
+    else
+      echo "'theme-for-time-of-day' returned unexpected value: '" . theme "'"
+    endif
+  endif
   let curr_hour = strftime("%H")
   let curr_month = strftime("%m")
   let morning_hour = 8
@@ -335,18 +357,8 @@ function ThemeForTimeOfDay(timer)
     let evening_hour = 17
   endif
   if curr_hour > morning_hour && curr_hour < evening_hour
-    " Avoid flicker (primarily in GVim) by not resetting the same theme.
-    " Done here, so that `LightTheme` can be used unconditionally.
-    if exists("s:current_theme") && s:current_theme == "light"
-      return
-    endif
     call LightTheme()
   else
-    " Avoid flicker (primarily in GVim) by not resetting the same theme.
-    " Done here, so that `DarkTheme` can be used unconditionally.
-    if exists("s:current_theme") && s:current_theme == "dark"
-      return
-    endif
     call DarkTheme()
   endif
 endfunction
